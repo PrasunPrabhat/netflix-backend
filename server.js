@@ -3,6 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 5000;
+
 const allowedOrigins = [
   "https://cinescope-ai.onrender.com",
   "https://netflix-frontend-d318e.web.app",
