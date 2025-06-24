@@ -3,17 +3,28 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-dotenv.config();
-const app = express();
-const PORT = process.env.PORT || 5000;
+const allowedOrigins = [
+  "https://cinescope-ai.onrender.com",
+  "https://netflix-frontend-d318e.web.app",
+  "http://localhost:3000", // optional, for local development
+];
 
 app.use(
   cors({
-    origin: "https://cinescope-ai.onrender.com", // Your frontend Render URL
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like curl, Postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("CORS not allowed from this origin"));
+      }
+    },
     methods: ["GET", "POST"],
-    credentials: true,
+    credentials: true, // Only use if you're sending cookies/auth
   })
 );
+
 app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_KEY);
