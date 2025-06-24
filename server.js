@@ -7,7 +7,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://cinescope-ai.onrender.com", // Your frontend Render URL
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_KEY);
