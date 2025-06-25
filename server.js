@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   "https://cinescope-ai.onrender.com",
   "https://netflix-frontend-d318e.web.app",
+  "https://cine-scope-ai-prompt-based-movie-re.vercel.app/",
   "http://localhost:3000", // optional, for local development
 ];
 
@@ -44,7 +45,7 @@ app.post("/api/gpt", async (req, res) => {
 
     res.json({ text });
   } catch (err) {
-    console.error("Gemini error:", err);
+    // console.error("Gemini error:", err);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
