@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   "https://cinescope-ai.onrender.com",
-  "https://cine-scope-ai-prompt-based-movie-re.vercel.app/",
+  "https://cine-scope-ai-prompt-based-movie-re.vercel.app",
   "http://localhost:3000", // optional, for local development
 ];
 
